@@ -1,0 +1,32 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="{% static 'fontawesomefree/js/brands.js' %}"></script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+    <div class="container">
+    <img class="my_image my_image_padding" src="{% static 'img/banner2.png' %}" alt="Our Products" width="1300px" height="400px">
+    </div>
+{% block content %}
+{% endblock %}
+</div>
+
+{% include 'footer.html' %}
+
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+</body>
+</html>

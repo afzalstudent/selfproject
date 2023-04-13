@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+
+</head>
+{% block content %}
+<body>
+
+ {% for msg in messages %}
+        <h3>{{msg}}</h3>
+    {% endfor %}
+
+
+<form action = "{% url 'selfapp:confirm' %}" method = "post">
+    {% csrf_token %}
+    Name            : <input type="text" name="Name" placeholder="Name"><br>
+    Date of Birth   : <input type="date" name="birthday" placeholder="your birthday"><br>
+    Age             : <input type="number" name="age" placeholder="your age"><br>
+    Gender          :<select name="gender" id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option></select><br>
+
+    Address         :<br> <textarea id="address" name="Address" rows="3" cols="50"> </textarea><br>
+    Mobile          : <input type="number" name="mobile" placeholder="your number"><br>
+    mail ID         : <input type="email" name="email" placeholder="your email"><br>
+    Purpose         :   <select name="purpose" id="purpose">
+                        <option value="enquiry">Enquiry</option>
+                        <option value="place order">Place Order</option>
+                        <option value="return">Return</option></select><br>
+
+    Materials
+    Provide         : <br><input type="checkbox" name="dnote">Debit Notebook<br>
+                      <input type="checkbox" name=pen">Pen<br>
+                      <input type="checkbox" name="pen">Pencil<br>
+                      <input type="checkbox" name="expapers">Exam Papers<br>
+
+    Department  :   <select id="select1">
+                        <option selected disabled="true">Select</option>
+                        {% for d in dept %}
+                        <option value="{{d.id}}">{{d.name}}</option>
+                        {% endfor %}
+                    </select><br>
+    Courses  :      <select id="select2">
+                        <option selected disabled="true">Select</option>
+                        {% for c in course %}
+                        <option value="{{c.department_id}}">{{c.name}}</option>
+                        {% endfor %}
+                    </select><br>
+
+    <input href="{% url 'selfapp:confirm' %}" type="submit" value="submit and logout"><br>
+
+<div>
+
+</div>
+
+</form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function()
+        {
+            var $select1=$('#select1'),
+                $select2=$('#select2'),
+                $options=$select2.find('option');
+                $select1.on('change',function()
+                {
+                    $select2.html($options.filter('[value="'+this.value+'"]'));
+                }).trigger('change');
+        });
+    </script>
+
+
+</body>
+{% endblock %}
+</html>

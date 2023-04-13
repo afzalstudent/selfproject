@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+
+<h3>{% if user.is_authenticated %}
+<li>Order Confirmed for {{user.username}}</li>
+{% endif %} </h3>
+
+
+
+
+<h2>
+<a href="{% url 'selfapp:home' %}">Back to Home</a>
+</h2>
+
+
+ <div class="container">
+    <img class="my_image my_image_padding" src="{% static 'img/admsn.png' %}" alt="Our Products" width="1300px" height="400px">
+ </div>
+
+{% endblock %}
+</body>
+</html>
